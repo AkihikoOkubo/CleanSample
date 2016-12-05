@@ -32,9 +32,18 @@ class ArticleUseCaseImpl : ArticleUseCase {
             
             if let error = task.error {
                 
-                //TODO:いい感じでエラーをハンドリングするように修正する
-                let sampleError = error as! SampleError
-                myself.getArticlesOutput?.getArticlesOnFail(error: sampleError)
+                //エラータイプによってdelegateするメソッドを変えます
+                switch error {
+                case SampleError.notAuthorized:
+                    //し
+                    myself.getArticlesOutput?.getArticlesOnFail(error: SampleError.notAuthorized)
+                    print("notAuthorized")
+                case SampleError.network:
+                    myself.getArticlesOutput?.getArticlesOnFail(error: SampleError.network)
+                    print("network")
+                default:
+                    throw error
+                }
             }
             
             if let jsons = task.result {

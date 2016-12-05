@@ -14,7 +14,6 @@ import Foundation
  */
 enum SampleError: Error {
     
-    //TODO:↓検討中です。
     /*
      UseCaseからRepositoryの実装を隠蔽するために汎用的なエラーに変換します。
      例えば、web-APIの実行で404が返却された場合と、Realmの検索の結果該当行がない場合は、等しく「noData」として扱います。

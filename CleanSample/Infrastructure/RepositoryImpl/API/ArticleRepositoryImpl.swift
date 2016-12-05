@@ -24,10 +24,9 @@ class ArticleRepositoryImpl : ArticleRepository {
         //APIのコール処理の中でAarticleJsonEntityへのマッピングまで済ませてあります
         request.getArticle(callback: {(jsons, error) -> Void in
             
-            if (error != nil ) {
-                
-                //TODO:本来はここでエラーの内用を汎化して、SampleErrorを作成します。↓サンプルでは固定で認証エラーを返します。
-                taskCompletionSource.trySet(error: SampleError.notAuthorized)
+            if error != nil  {
+                //APIのコール処理で適切なエラータイプが設定されているはず
+                taskCompletionSource.trySet(error: error!)
             }
             
             taskCompletionSource.trySet(result:jsons!)

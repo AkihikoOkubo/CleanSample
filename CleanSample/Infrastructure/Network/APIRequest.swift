@@ -30,7 +30,9 @@ class APIRequest : NSObject {
                     
                     break
                 case .failure(_):
-                    //サンプルなので取りあえずにします。
+                    
+                    //errorの内容を判別してCallbackします。
+                    //本番環境のAPIならば、必要であればerrorを種類を判別する情報を含むはず。
                     callback(nil, SampleError.notAuthorized)
                     break
                 }
